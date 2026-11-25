@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name List App</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            min-height: 100vh;
+            padding: 30px 15px;
+            background: linear-gradient(-45deg, #667eea, #764ba2, #3498db, #6dd5ed);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #4c51bf;
+            font-size: 32px;
+            margin-bottom: 10px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        h2 {
+            color: #5b4b9a;
+            margin-top: 30px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Animated illustration */
+        .hero-image {
+            width: 170px;
+            height: 145px;
+            margin: 5px auto 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .input-area {
+            margin: 20px 0;
+        }
+
+        input {
+            padding: 12px 15px;
+            margin: 5px;
+            border: 2px solid #d6d5f5;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        button {
+            padding: 11px 18px;
+            margin: 5px;
+            border: none;
+            border-radius: 9px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .add-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .update-btn {
+            background: #16a085;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        th, td {
+            border-bottom: 1px solid #eee;
+            padding: 13px 8px;
+            text-align: center;
+        }
+
+        th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            font-size: 15px;
+        }
+
+        tbody tr {
+            transition: background 0.3s, transform 0.3s;
+            animation: rowAppear 0.5s ease;
+        }
+
+        tbody tr:hover {
+            background: #f0f0ff;
+        }
+
+        @keyframes rowAppear {
+            from {
+                opacity: 0;
+                transform: translateX(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        td input {
+            width: 80%;
+            max-width: 180px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 10px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            td input {
+                width: 95%;
+                padding: 8px 4px;
+            }
+
+            button {
+                padding: 9px 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>✨ Name List Application</h1>
+
+        <!-- Animated SVG illustration -->
+        <div class="hero-image">
+            <svg viewBox="0 0 180 150" width="100%" height="100%"
+                 xmlns="http://www.w3.org/2000/svg">
+
+                <rect x="35" y="15" width="110" height="125"
+                      rx="12" fill="#e8eaff"/>
+
+                <rect x="48" y="30" width="84" height="12"
+                      rx="5" fill="#667eea"/>
+
+                <rect x="48" y="55" width="84" height="9"
+                      rx="4" fill="#b8bdf5"/>
+
+                <rect x="48" y="75" width="84" height="9"
+                      rx="4" fill="#b8bdf5"/>
+
+                <rect x="48" y="95" width="84" height="9"
+                      rx="4" fill="#b8bdf5"/>
+
+                <circle cx="137" cy="112" r="20" fill="#16a085"/>
+                <path d="M127 112 L134 119 L147 104"
+                      fill="none" stroke="white"
+                      stroke-width="4" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+
+                <circle cx="28" cy="45" r="7" fill="#f6ad55"/>
+                <circle cx="153" cy="35" r="6" fill="#ed64a6"/>
+                <path d="M20 115 L26 103 L32 115 Z" fill="#667eea"/>
+            </svg>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="nameInput" placeholder="Enter a name">
+            <button class="add-btn" onclick="addName()">+ Add Name</button>
+        </div>
+
+        <h2>📋 Name List</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="nameTable"></tbody>
+        </table>
+
+    </div>
+
+    <script>
+        async function fetchNames() {
+            const response = await fetch('/names');
+            const names = await response.json();
+            const table = document.getElementById('nameTable');
+            table.innerHTML = names.map(n => `
+                <tr>
+                    <td>${n.id}</td>
+                    <td><input type="text" value="${n.name}" id="name-${n.id}"></td>
+                    <td>
+                        <button class="update-btn" onclick="updateName(${n.id})">Update</button>
+                        <button class="delete-btn" onclick="deleteName(${n.id})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function addName() {
+            const name = document.getElementById('nameInput').value;
+            if (!name) return alert('Name is required');
+            await fetch('/names', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            });
+            document.getElementById('nameInput').value = '';
+            fetchNames();
+        }
+
+        async function updateName(id) {
+            const name = document.getElementById(`name-${id}`).value;
+            if (!name) return alert('Name is required');
+            await fetch(`/names/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            });
+            fetchNames();
+        }
+
+        async function deleteName(id) {
+            if (!confirm('Are you sure?')) return;
+            await fetch(`/names/${id}`, { method: 'DELETE' });
+            fetchNames();
+        }
+
+        fetchNames();
+    </script>
+
+</body>
+</html>
